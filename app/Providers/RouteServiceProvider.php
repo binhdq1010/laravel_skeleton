@@ -17,6 +17,12 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
+     * This namespace is applied to the controller routes of backend.
+     * @var string
+     */
+    protected $namespace_backend = 'App\Http\Backend\Controllers';
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @param  \Illuminate\Routing\Router  $router
@@ -39,6 +45,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group(['namespace' => $this->namespace], function ($router) {
             require app_path('Http/routes.php');
+        });
+
+        $router->group(['namespace' => $this->namespace_backend], function ($router) {
+            require app_path('Http/Backend/routes.php');
         });
     }
 }
